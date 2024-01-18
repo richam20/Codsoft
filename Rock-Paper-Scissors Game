@@ -1,0 +1,41 @@
+import random
+
+def get_user_choice():                                                         # Get user input for rock, paper, or scissors
+    while True:
+        user_choice = input("Choose rock, paper, or scissors: ")
+        if user_choice in ["rock", "paper", "scissors"]:
+            return user_choice
+        else:
+            print("Invalid choice. Please enter rock, paper, or scissors.")
+
+def get_computer_choice():                                                    # Get a random choice for the computer
+    return random.choice(["rock", "paper", "scissors"])
+
+def winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!"
+    elif (user_choice == "rock" and computer_choice == "scissors") or \
+         (user_choice == "scissors" and computer_choice == "paper") or \
+         (user_choice == "paper" and computer_choice == "rock"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+def show_result(user_choice, computer_choice, result):                       # Display the user's choice, computer's choice, and the result
+    print(f"\nYour choice: {user_choice}")
+    print(f"Computer's choice: {computer_choice}")
+    print(result)
+
+def play_game():
+    while True:
+        user_choice = get_user_choice()
+        computer_choice = get_computer_choice()
+
+        result = winner(user_choice, computer_choice)
+        show_result(user_choice, computer_choice, result)
+
+        play_again = input("Do you want to play again? (yes/no): ")
+        if play_again != "yes":
+           break
+
+play_game()
